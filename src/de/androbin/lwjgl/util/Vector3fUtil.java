@@ -1,14 +1,10 @@
 package de.androbin.lwjgl.util;
 
-import static de.androbin.collection.util.IntegerCollectionUtil.*;
 import static de.androbin.math.util.floats.FloatMathUtil.*;
-import de.androbin.collection.map.*;
 import org.lwjgl.util.vector.*;
 
 public final class Vector3fUtil
 {
-	private static final int DIM = 3;
-	
 	private Vector3fUtil()
 	{
 	}
@@ -84,75 +80,6 @@ public final class Vector3fUtil
 		
 		dst.set( (float) Math.sin( yaw ) * cosPitch, (float) -Math.sin( pitch ), (float) -Math.cos( yaw ) * cosPitch );
 		return dst;
-	}
-	
-	public static <T> Intersection getIntersection( final Vector3f pos, final Vector3f dir, final Map3D<T> map, final float max_distance )
-	{
-		final Intersection[] i = new Intersection[ DIM ];
-		final float[] l = new float[ DIM ];
-		
-		for ( int x = 0; x < DIM; x++ )
-		{
-			final float c = get( dir, x );
-			
-			if ( c == 0f )
-			{
-				continue;
-			}
-			
-			final boolean e = c > 0f;
-			final int[] b = getIntersection( pos, dir, map, max_distance, l, x, e );
-			
-			if ( b == null )
-			{
-				continue;
-			}
-			
-			i[ x ] = new Intersection( b, e ? x << 1 : ( x << 1 ) + 1, l[ x ] );
-		}
-		
-		{
-			int n = 0;
-			
-			for ( int s = 1; s < DIM; s++ )
-			{
-				if ( i[ s ] != null && l[ s ] < l[ n ] )
-				{
-					n = s;
-				}
-			}
-			
-			return i[ n ];
-		}
-	}
-	
-	public static <T> int[] getIntersection( final Vector3f pos, final Vector3f dir, final Map3D<T> map, final float max_distance, final float[] l, final int x, final boolean e )
-	{
-		int[] b = null;
-		
-		final Vector3f p = edge( pos, dir, x );
-		final Vector3f d = normalise( dir, x, true );
-		
-		for ( int n = 1; b == null && l[ x ] < max_distance * max_distance; n++ )
-		{
-			{
-				final Vector3f a = (Vector3f) new Vector3f( d ).scale( n );
-				final Vector3f t = Vector3f.add( p, a, null );
-				l[ x ] = Vector3f.sub( pos, t, null ).lengthSquared();
-				
-				{
-					final int x_ = x;
-					b = fill( new int[ DIM ], j -> j == x_ ? round( e ? get( t, x_ ) : get( t, x_ ) - 1f ) : floor( get( t, j ) ) );
-				}
-			}
-			
-			if ( !map.isElementAt( b[ 0 ], b[ 1 ], b[ 2 ] ) )
-			{
-				b = null;
-			}
-		}
-		
-		return b;
 	}
 	
 	public static Vector3f interpolate3f( final Vector3f v1, final float p, final Vector3f v2, final Vector3f dest )
