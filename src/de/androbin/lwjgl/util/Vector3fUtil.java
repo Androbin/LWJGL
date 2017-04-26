@@ -89,9 +89,9 @@ public final class Vector3fUtil
 			return interpolate3f( v1, p, v2, new Vector3f() );
 		}
 		
-		final float x = interpolate( v1.x, p, v2.x );
-		final float y = interpolate( v1.y, p, v2.y );
-		final float z = interpolate( v1.z, p, v2.z );
+		final float x = inter( v1.x, p, v2.x );
+		final float y = inter( v1.y, p, v2.y );
+		final float z = inter( v1.z, p, v2.z );
 		
 		dest.set( x, y, z );
 		return dest;

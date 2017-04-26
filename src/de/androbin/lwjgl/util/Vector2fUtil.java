@@ -53,8 +53,8 @@ public final class Vector2fUtil
 	
 	public static Vector2f interpolate2f( final Vector2f v1, final float p, final Vector2f v2 )
 	{
-		final float x = interpolate( v1.x, p, v2.x );
-		final float y = interpolate( v1.y, p, v2.y );
+		final float x = inter( v1.x, p, v2.x );
+		final float y = inter( v1.y, p, v2.y );
 		
 		return new Vector2f( x, y );
 	}
