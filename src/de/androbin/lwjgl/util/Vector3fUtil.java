@@ -33,11 +33,11 @@ public final class Vector3fUtil {
   
   public static float get( final Vector3f v, final int x ) {
     switch ( x ) {
-      case 0 :
+      case 0:
         return v.x;
-      case 1 :
+      case 1:
         return v.y;
-      case 2 :
+      case 2:
         return v.z;
     }
     
@@ -91,13 +91,13 @@ public final class Vector3fUtil {
   
   public static Vector3f set( final Vector3f v, final int x, final float c ) {
     switch ( x ) {
-      case 0 :
+      case 0:
         v.setX( c );
         break;
-      case 1 :
+      case 1:
         v.setY( c );
         break;
-      case 2 :
+      case 2:
         v.setZ( c );
         break;
     }

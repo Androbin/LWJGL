@@ -25,12 +25,12 @@ public final class Vector2fUtil {
   
   public static float get( final Vector2f v, final int x ) {
     switch ( x ) {
-      default :
+      default:
         return 0f;
       
-      case 0 :
+      case 0:
         return v.x;
-      case 1 :
+      case 1:
         return v.y;
     }
   }
@@ -55,10 +55,10 @@ public final class Vector2fUtil {
   
   public static Vector2f set( final Vector2f v, final int x, final float c ) {
     switch ( x ) {
-      case 0 :
+      case 0:
         v.setX( c );
         break;
-      case 1 :
+      case 1:
         v.setY( c );
         break;
     }
